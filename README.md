@@ -66,4 +66,4 @@ def off():
 
 ## Thats it
 
-Is this mental? It seems to work well and gets better range than the cheapo 433 MHz Tx module I've been using on another Pi Zero. Raise an issue to give me you feedback and comments.
+Is this crazy? It seems to work well and gets better range than the cheapo 433 MHz Tx module I've been using on another Pi Zero. Raise an issue to give me you feedback and comments.
