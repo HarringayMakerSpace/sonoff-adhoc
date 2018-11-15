@@ -57,11 +57,11 @@ You can do all that from Python on the Raspberry Pi using ```os.system``` or ```
 from subprocess import call
 
 def on():
-    call("sudo ifconfig wlan0 hw ether 36:01:22:33:44:01", shell=True)
+    call("sudo ifconfig wlan0 hw ether 36:01:00:00:00:01", shell=True)
     call("sudo iwlist wlan0 scan", shell=True)
 
 def off():
-    call("sudo ifconfig wlan0 hw ether 36:01:22:33:44:02", shell=True)
+    call("sudo ifconfig wlan0 hw ether 36:01:00:00:00:02", shell=True)
     call("sudo iwlist wlan0 scan", shell=True)
  
 ```
