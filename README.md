@@ -15,7 +15,7 @@ You could use anything you like for the mac address bytes, but to avoid clashing
 
 ## The Sonoff Arduino sketch
 
-The Sonoff ESP8266 runs a simple Arduino sketch that just listens for the probe requests that contain a mac address that starts with 0x3601 and then switches the relay on or off based on the last byte of the mac address. It also has a simple interupt handler on the Sonoff builtin button so you can also switch it on and off by pressing the button. 
+The Sonoff ESP8266 runs a simple Arduino sketch that just listens for the probe requests that contain a mac address that starts with 0x3601 and then switches the relay on or off based on the last byte of the mac address. It has a simple interupt handler on the Sonoff builtin button too, so that you can also switch it on and off by pressing the button. 
 
 The code is [here](/SonoffWifiProbes). 
 
