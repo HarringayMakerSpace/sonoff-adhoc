@@ -5,7 +5,7 @@ Control a Sonoff switch with Wifi probe requests
 
 I had some Sonoff switches lying around and was looking for a way to control them from a Raspberry Pi Zero W [(for the voice controlled light switch project)](https://github.com/HarringayMakerSpace/voice-controlled-switch) but didn't want all the messing around configuring Wifi networks, so came up with this approach of using Wifi probe requests to switch the Sonoff on and off.
 
-This makes it similar to using 433 MHz remote control switches but using the built-in Wifi on the Pi Zero so it doesn't need the faf of the extra 433 Mhz transmitter module.
+This makes it similar to using 433 MHz remote control switches but using the built-in Wifi on the Raspberry Pi so it doesn't need the faf of the external 433 Mhz transmitter module.
 
 ## What are Wifi probe requests?
 
