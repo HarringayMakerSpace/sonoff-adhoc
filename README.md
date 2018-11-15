@@ -34,6 +34,7 @@ You can change the mac address of the Pi with the ```ifconfig wlan0 hw ether <so
 ```
 sudo ifconfig wlan0 hw ether 36:01:00:00:00:01
 ```
+(don't worry about messing up your Pi, this is not retained over power off so switching the Pi off/on returns it to the default mac address)
 
 That done, to have the Pi Zero send a Wifi probe request you can use the command:
 ```
