@@ -9,11 +9,13 @@ This makes it similar to using 433 MHz remote control switches but using the bui
 
 ## What are Wifi probe requests?
 
-A probe request is a special message sent by a Wifi client to discover what Wifi access points are within range. Basically, the client sends the probe request message and then all access points that receive it respond saying they're there. The probe request is un-encrypted and doesn't need to know anything at all about the access point. The probe request includes the mac address of the client, so by fiddling with the mac address - 6 bytes - you can send a small amount of data.  
+A probe request is a special message sent by a Wifi client to discover what Wifi access points are within range. Basically, the client sends a probe request message and then all access points that receive it respond saying they're there. Its how your Wifi devices - PC or phone etc - are able to show you a list of the Wifi SSID's to connected to. The probe request message is un-encrypted and doesn't need to know anything at all about the access points and it includes the mac address of the client, so by fiddling with the mac address - 6 bytes - you can send a small amount of data.  
 
-You could use anything you like for the mac address, but to avoid clashing with some other real device its best to use something reserved for private use - [see here for those](https://serverfault.com/questions/40712/what-range-of-mac-addresses-can-i-safely-use-for-my-virtual-machines). So for this I'm using a mac address that starts with 0x36, followed by one byte that identifies my Sonoff switch which allows for up to 256 Sonoffs, and the last byte is the command to switch it on or off. 
+You could use anything you like for the mac address bytes, but to avoid clashing with some other real device its best to use something reserved for private use - [see here for those](https://serverfault.com/questions/40712/what-range-of-mac-addresses-can-i-safely-use-for-my-virtual-machines). For this I'm using a mac address that starts with 0x36, followed by one byte that identifies my Sonoff switch, which allows for up to 256 Sonoffs, and the last byte is the command to switch it on or off. 
 
 ## The Sonoff Arduino sketch
+
+The Sonoff ESP8266 runs a simple Arduino sketch that just listens for the probe requests that contain a mac address that starts with 0x3601 and then switches the relay on or off based on the last byte of the mac address. It also has a simple interupt handler on the Sonoff builtin button so you can also switch it on and off by pressing the button. The code is [here](/SonoffWifiProbes). 
 
 ## On the Raspberry Pi
 
@@ -61,3 +63,7 @@ def off():
  
 ```
 (it would be nice to suppress the scan results from the ```iwlist``` command, can anyone work out how to do that?) 
+
+## Thats it
+
+Is this mental? It seems to work well and gets better range than the cheapo 433 MHz Tx module I've been using on another Pi Zero. Raise an issue to give me you feedback and comments.
