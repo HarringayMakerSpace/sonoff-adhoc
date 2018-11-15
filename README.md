@@ -9,8 +9,9 @@ This makes it similar to using 433 MHz remote control switches but using the bui
 
 ## What are Wifi probe requests?
 
-You could use any mac address, but to avoid clashing with some other device its best to use one reserved for provate use, [see here for those](https://serverfault.com/questions/40712/what-range-of-mac-addresses-can-i-safely-use-for-my-virtual-machines). 
+A probe request is a special message sent by a Wifi client to discover what Wifi access points are within range. Basically, the client sends the probe request message and then all access points that receive it respond saying they're there. The probe request is un-encrypted and doesn't need to know anything at all about the access point. The probe request includes the mac address of the client, so by fiddling with the mac address - 6 bytes - you can send a small amount of data.  
 
+You could use anything you like for the mac address, but to avoid clashing with some other real device its best to use something reserved for private use - [see here for those](https://serverfault.com/questions/40712/what-range-of-mac-addresses-can-i-safely-use-for-my-virtual-machines). So for this I'm using a mac address that starts with 0x36, followed by one byte that identifies my Sonoff switch which allows for up to 256 Sonoffs, and the last byte is the command to switch it on or off. 
 
 ## The Sonoff Arduino sketch
 
