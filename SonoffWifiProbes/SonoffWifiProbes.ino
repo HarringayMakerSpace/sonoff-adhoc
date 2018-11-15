@@ -27,13 +27,13 @@ void setup() {
   WiFi.mode(WIFI_AP);
   WiFi.softAP("sonoff", "<notused>", true, 0);
 
-  probeRequestPrintHandler = WiFi.onSoftAPModeProbeRequestReceived(&onProbeRequestPrint);
+  probeRequestPrintHandler = WiFi.onSoftAPModeProbeRequestReceived(&onProbeRequest);
 
   pinMode(DEVICE_BUTTON, INPUT);
-  attachInterrupt(DEVICE_BUTTON, buttonPress, HIGH);
+  attachInterrupt(DEVICE_BUTTON, onButtonPress, HIGH);
 }
 
-void onProbeRequestPrint(const WiFiEventSoftAPModeProbeRequestReceived& evt) {
+void onProbeRequest(const WiFiEventSoftAPModeProbeRequestReceived& evt) {
   if (evt.mac[0] != 0x36 || evt.mac[1] != SONOFF_ID) return;
 
   Serial.print("Got probe request, switching: ");
@@ -49,8 +49,7 @@ void onProbeRequestPrint(const WiFiEventSoftAPModeProbeRequestReceived& evt) {
 void loop() {
 }
 
-void buttonPress() {
+void onButtonPress() {
   digitalWrite(SONOFF_RELAY, !digitalRead(SONOFF_RELAY));
   Serial.print("Button pressed, switched: "); Serial.println(digitalRead(SONOFF_RELAY) ? "on" : "off");
 }
-
