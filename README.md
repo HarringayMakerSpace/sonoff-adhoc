@@ -79,7 +79,7 @@ What do you think? Raise an issue to give me your feedback and comments.
 
 Some experimentation shows its possible to further configure this so as to partition the broadcast data by ESSID, and this enables even more posibilities.
 
-The Sonoff device has an SSID defined in the sketch, for example, [here](https://github.com/HarringayMakerSpace/sonoff-adhoc/blob/master/SonoffWifiProbes/SonoffWifiProbes.ino#L31) its "Sonoff1".
+The Sonoff device has an SSID defined in the sketch, for example, [here](https://github.com/HarringayMakerSpace/sonoff-adhoc/blob/master/SonoffWifiProbes/SonoffWifiProbes.ino#L31), its "Sonoff1".
 
 You can target a probe request to a particular SSID, and on the Pi you do that with the ```essid``` parameter of the ```iwlist``` command. So now the probe request messages are ignored by all access points except ones with the specified SSID. For example:
 ```
