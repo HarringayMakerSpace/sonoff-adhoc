@@ -1,12 +1,12 @@
 /**
-   Sonoff ad-hoc contol via Wifi probe requests
-
-   This shows how to control a Sonoff Wifi switch without needing to configure
-   it for a Wifi access point.
-
-   Author: Anthony Elder
-   License: Apache License v2
-*/
+ * Sonoff ad-hoc contol via Wifi probe requests 
+ * 
+ * This shows how to control a Sonoff Wifi switch without needing to configure  
+ * it for a Wifi access point.
+ * 
+ * Author: Anthony Elder
+ * License: Apache License v2
+ */
 #include <ESP8266WiFi.h>
 
 // Some random byte to identify this Sonoff
@@ -16,21 +16,21 @@
 #define DEVICE_BUTTON 0
 
 WiFiEventHandler probeRequestPrintHandler;
+volatile boolean buttonPressed;
 
 void setup() {
   Serial.begin(115200); Serial.println();
   Serial.println("Sonoff probe request control");
-
+  
   pinMode(SONOFF_RELAY, OUTPUT);
+  pinMode(DEVICE_BUTTON, INPUT);
+  attachInterrupt(DEVICE_BUTTON, buttonPress, HIGH); 
 
   WiFi.persistent(false);
   WiFi.mode(WIFI_AP);
-  WiFi.softAP("sonoff", "<notused>", true, 0);
+  WiFi.softAP("Sonoff1", "<notused>", 6, 0, 0);
 
   probeRequestPrintHandler = WiFi.onSoftAPModeProbeRequestReceived(&onProbeRequest);
-
-  pinMode(DEVICE_BUTTON, INPUT);
-  attachInterrupt(DEVICE_BUTTON, onButtonPress, HIGH);
 }
 
 void onProbeRequest(const WiFiEventSoftAPModeProbeRequestReceived& evt) {
@@ -47,9 +47,14 @@ void onProbeRequest(const WiFiEventSoftAPModeProbeRequestReceived& evt) {
 }
 
 void loop() {
+  if (buttonPressed) {
+    digitalWrite(SONOFF_RELAY, !digitalRead(SONOFF_RELAY));
+    Serial.print("Button pressed, swiched: "); Serial.println(digitalRead(SONOFF_RELAY) ? "on" : "off");
+    delay(250); // to debounce button
+    buttonPressed = false;
+  }
 }
 
-void onButtonPress() {
-  digitalWrite(SONOFF_RELAY, !digitalRead(SONOFF_RELAY));
-  Serial.print("Button pressed, switched: "); Serial.println(digitalRead(SONOFF_RELAY) ? "on" : "off");
+ICACHE_RAM_ATTR void buttonPress() {
+  buttonPressed = true;
 }
