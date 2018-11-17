@@ -86,7 +86,7 @@ You can target a probe request to a particular SSID, and on the Pi you do that w
 sudo iwlist wlan0 scan essid "Sonoff1"
 ```
 
-So using that you could now do things like group the Sonoff's by SSID - "Downstairs", "Upstairs", "lights", or whatever you choose. 
+So using that you could now do things send the probe request to a specific device, or group the Sonoff's by SSID - "Downstairs", "Upstairs", "lights", or whatever you choose. 
 
 Aditionally, using the targeted iwlist scan also then allows you to hide the Sonoff Access Points so that they don't cluter up the list of available Access Points shown on you Phone, PC, etc. You do that by setting the hidden parameter to "1" on the ```WiFi.softAP``` call, for example, changing the line [here](https://github.com/HarringayMakerSpace/sonoff-adhoc/blob/master/SonoffWifiProbes/SonoffWifiProbes.ino#L31) to: 
 ```
