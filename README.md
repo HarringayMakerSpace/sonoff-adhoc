@@ -88,7 +88,7 @@ sudo iwlist wlan0 scan essid "Sonoff1"
 
 So using that you could do things like group the Sonoff's - "Downstairs", "Upstairs", "lights", or whatever you choose. 
 
-Aditionally this also allows you to hide the Sonoff Access Points so that they don't cluter up the list of available Access Points shown on you Phone, PC, etc. You do that by setting the hidden parameter to "1" on the ```WiFi.softAP``` call, for example, changing the line [here](WiFi.softAP) to: 
+Aditionally, this also allows you to hide the Sonoff Access Points so that they don't cluter up the list of available Access Points shown on you Phone, PC, etc. You do that by setting the hidden parameter to "1" on the ```WiFi.softAP``` call, for example, changing the line [here](WiFi.softAP) to: 
 ```
   WiFi.softAP("Sonoff1", "<notused>", 6, 1, 0);
 ```
