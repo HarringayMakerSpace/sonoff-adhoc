@@ -81,7 +81,7 @@ Some experimentation shows its possible to further configure this so as to parti
 
 The Sonoff device has an SSID defined in the sketch, for example, [here](https://github.com/HarringayMakerSpace/sonoff-adhoc/blob/master/SonoffWifiProbes/SonoffWifiProbes.ino#L31) its "Sonoff1".
 
-You can target the probe request to a particular SSID, and on the Pi you do that with the ```essid``` parameter of the ```iwlist``` command. So now the probe request messages are ignored by all access points except ones with the specified SSID. For example:
+You can target a probe request to a particular SSID, and on the Pi you do that with the ```essid``` parameter of the ```iwlist``` command. So now the probe request messages are ignored by all access points except ones with the specified SSID. For example:
 ```
 sudo iwlist wlan0 scan essid "Sonoff1"
 ```
