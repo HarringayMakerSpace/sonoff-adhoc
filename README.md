@@ -1,6 +1,8 @@
 # sonoff-adhoc
 Control a Sonoff switch with Wifi probe requests
 
+### (17th Nov update: see the advance config note at the bottom)
+
 ## Why???
 
 I had some Sonoff switches lying around and was looking for a simple way to control them from a Raspberry Pi Zero W [(for the voice controlled light switch project)](https://github.com/HarringayMakerSpace/voice-controlled-switch), but I didn't want all the complexity around configuring Wifi networks, so came up with this approach of using Wifi probe requests to switch the Sonoff on and off.
@@ -72,3 +74,21 @@ def off():
 Is this crazy? It seems to work well, its fast, reliable, and gets better range than the cheapo 433 MHz Tx module I've been using on another Pi Zero. 
 
 What do you think? Raise an issue to give me your feedback and comments.
+
+## Advanced config
+
+Some experimentation shows its possible to further configure this so as to partition the broadcast data by ESSID, and this enables even more posibilities.
+
+The Sonoff device has an SSID defined in the sketch, for example, [here](https://github.com/HarringayMakerSpace/sonoff-adhoc/blob/master/SonoffWifiProbes/SonoffWifiProbes.ino#L31) its "Sonoff1".
+
+You can target the probe request to a particular SSID, and on the Pi you do that with the ```essid``` parameter of the ```iwlist``` command. So now the probe request messages are ignored by all access points except ones with the specified SSID. For example:
+```
+sudo iwlist wlan0 scan essid "Sonoff1"
+```
+
+So using that you could do things like group the Sonoff's - "Downstairs", "Upstairs", "lights", or whatever you choose. 
+
+Aditionally this also allows you to hide the Sonoff Access Points so that they don't cluter up the list of available Access Points shown on you Phone, PC, etc. You do that by setting the hidden parameter to "1" on the ```WiFi.softAP``` call, for example, changing the line [here](WiFi.softAP) to: 
+```
+  WiFi.softAP("Sonoff1", "<notused>", 6, 1, 0);
+```
