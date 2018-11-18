@@ -1,5 +1,5 @@
 # sonoff-adhoc
-Control a Sonoff switch with Wifi probe requests
+Control a Sonoff switch without a needing central Wifi access point
 
 ### (17th Nov update: see the advance config note at the bottom)
 
