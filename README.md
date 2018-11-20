@@ -1,5 +1,5 @@
 # sonoff-adhoc
-Enables non-ESP8266's to send point-to-point or broadcast messages to a Sonoff (or any other ESP8266 device) without needing a needing a central Wifi access point. A kind of simple vendor neutral ESP-Now.
+Enables non-ESP8266's to send point-to-point or broadcast messages to a Sonoff (or any other ESP8266 device) without needing a central Wifi access point. A kind of simple vendor neutral ESP-Now.
 
 ### (17th Nov update: see the advance config note at the bottom)
 
