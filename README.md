@@ -60,11 +60,11 @@ from subprocess import call
 
 def on():
     call("sudo ifconfig wlan0 hw ether 36:01:00:00:00:01", shell=True)
-    call("sudo iwlist wlan0 scan", shell=True)
+    call("sudo iwlist wlan0 scan > /dev/null", shell=True)
 
 def off():
     call("sudo ifconfig wlan0 hw ether 36:01:00:00:00:02", shell=True)
-    call("sudo iwlist wlan0 scan", shell=True)
+    call("sudo iwlist wlan0 scan > /dev/null", shell=True)
  
 ```
 (it would be nice to suppress the scan results from the ```iwlist``` command, can anyone work out how to do that?) 
